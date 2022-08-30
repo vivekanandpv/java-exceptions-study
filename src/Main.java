@@ -2,7 +2,21 @@
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(foo());
+        try {
+            //  Setting a trap for the exception
+            System.out.println(foo());
+        } catch (NullPointerException npe) {
+            //  When NullPointerException is thrown anywhere
+            //  down the call graph, this handler will catch it
+
+            //  We can consider logging, recovery, graceful exit
+            //  strategies here.
+
+            //  catch block is like a method, which must take only
+            //  one argument of the type Throwable (any of its descendants)
+            System.out.println("Oops!");
+        }
+
     }
 
     public static String foo() {
@@ -12,10 +26,5 @@ public class Main {
     public static String bar() {
         String name = null;
         return name.toUpperCase();
-
-        //  When the exception is thrown here,
-        //  it doesn't return to the call site (in foo()), but it will
-        //  return unceremoniously to the JVM, where the runtime has a
-        //  global exception handler
     }
 }
