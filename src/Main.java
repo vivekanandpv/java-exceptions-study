@@ -2,19 +2,20 @@
 
 public class Main {
     public static void main(String[] args) {
-        //  Exceptions are thrown because of logical mistakes
-        //  or underlying system conditions or due to unmet
-        //  requirements of APIs
+        System.out.println(foo());
+    }
 
-        String message = null;
+    public static String foo() {
+        return foo();
+    }
 
-        String upper = message.toUpperCase();   //  NullPointerException is thrown here
+    public static String bar() {
+        String name = null;
+        return name.toUpperCase();
 
-        //  This exception is unhandled and hence reaches the JVM
-        //  wherein the runtime terminates the program with an error
-        //  (a non-zero exit)
-
-        //  An exception is an object that encapsulates message related
-        //  to the exception and also the call stack information.
+        //  When the exception is thrown here,
+        //  it doesn't return to the call site (in foo()), but it will
+        //  return unceremoniously to the JVM, where the runtime has a
+        //  global exception handler
     }
 }
