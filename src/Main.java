@@ -6,21 +6,16 @@ public class Main {
             //  Setting a trap for the exception
             System.out.println(foo());
         } catch (NullPointerException npe) {
-            //  When NullPointerException is thrown anywhere
-            //  down the call graph, this handler will catch it
-
-            //  We can consider logging, recovery, graceful exit
-            //  strategies here.
-
-            //  catch block is like a method, which must take only
-            //  one argument of the type Throwable (any of its descendants)
-            System.out.println("Oops!");
+            //  Exception object npe for example contains
+            //  two critical information pieces: message and call stack
+            System.out.println(npe.getMessage());
+            npe.printStackTrace();
         }
 
     }
 
     public static String foo() {
-        return foo();
+        return bar();
     }
 
     public static String bar() {
