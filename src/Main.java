@@ -3,23 +3,28 @@
 public class Main {
     public static void main(String[] args) {
         try {
-            //  Setting a trap for the exception
-            System.out.println(foo());
+            foo();
         } catch (NullPointerException npe) {
-            //  Exception object npe for example contains
-            //  two critical information pieces: message and call stack
-            System.out.println(npe.getMessage());
-            npe.printStackTrace();
+            System.out.println("main: Oops!");
         }
 
     }
 
-    public static String foo() {
-        return bar();
+    public static void foo() {
+        try {
+            bar();
+        } catch (NullPointerException npe) {
+            System.out.println("foo: Oops!");
+        }
     }
 
-    public static String bar() {
+    public static void bar() {
         String name = null;
-        return name.toUpperCase();
+        try {
+            System.out.println(name.toUpperCase());
+        } catch (NullPointerException npe) {
+            System.out.println("bar: Oops!");
+        }
+
     }
 }
